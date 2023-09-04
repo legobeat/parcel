@@ -291,7 +291,7 @@ async function createLoader(
     asset.filePath,
   );
   return class ParcelFileSystemLoader extends FileSystemLoader {
-    async fetch(composesPath, relativeTo) {
+    fetch = async (composesPath, relativeTo) => {
       let importPath = composesPath.replace(/^["']|["']$/g, '');
       let resolved = await resolve(relativeTo, importPath);
       let rootRelativePath = path.resolve(path.dirname(relativeTo), resolved);
@@ -311,7 +311,7 @@ async function createLoader(
         this.fetch.bind(this),
       );
       return exportTokens;
-    }
+    };
 
     get finalSource() {
       return '';
