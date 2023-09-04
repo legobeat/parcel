@@ -27,7 +27,7 @@ export function remapAstLocations(
           (node.loc?.start).column = mapping.original.column;
 
           // $FlowFixMe
-          let length = (node.loc?.end).column - (node.loc?.start).column;
+          let length = node.loc?.end?.column - node.loc?.start?.column;
 
           // $FlowFixMe
           (node.loc?.end).line = mapping.original.line;
