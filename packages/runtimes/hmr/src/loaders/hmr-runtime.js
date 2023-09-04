@@ -118,7 +118,7 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   }
 
   // $FlowFixMe
-  ws.onmessage = async function (event /*: {data: string, ...} */) {
+  ws.onmessage = async function (event /*: interface { data: string } */) {
     checkedAssets = ({} /*: {|[string]: boolean|} */);
     assetsToAccept = [];
     assetsToDispose = [];

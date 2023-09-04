@@ -141,7 +141,7 @@ export async function applyFixture(
     }
     case 'link': {
       // $FlowFixMe[prop-missing]
-      await fs.symlink(node.target, path.join(dir, node.name));
+      await fs.unlink(node.target, path.join(dir, node.name));
       break;
     }
     default: {

@@ -17,15 +17,15 @@ export class FSHost {
     return this.fs.cwd();
   };
 
-  fileExists(filePath: FilePath): boolean {
+  fileExists = (filePath: FilePath): boolean => {
     try {
       return this.fs.statSync(filePath).isFile();
     } catch (err) {
       return false;
     }
-  }
+  };
 
-  readFile(filePath: FilePath): void | string {
+  readFile = (filePath: FilePath): void | string => {
     try {
       return this.fs.readFileSync(filePath, 'utf8');
     } catch (err) {
@@ -35,23 +35,23 @@ export class FSHost {
 
       throw err;
     }
-  }
+  };
 
-  directoryExists(filePath: FilePath): boolean {
+  directoryExists = (filePath: FilePath): boolean => {
     try {
       return this.fs.statSync(filePath).isDirectory();
     } catch (err) {
       return false;
     }
-  }
+  };
 
-  realpath(filePath: FilePath): FilePath {
+  realpath = (filePath: FilePath): FilePath => {
     try {
       return this.fs.realpathSync(filePath);
     } catch (err) {
       return filePath;
     }
-  }
+  };
 
   getAccessibleFileSystemEntries(dirPath: FilePath): {|
     directories: Array<FilePath>,
@@ -84,13 +84,13 @@ export class FSHost {
     }
   }
 
-  readDirectory(
+  readDirectory = (
     root: FilePath,
     extensions?: $ReadOnlyArray<string>,
     excludes?: $ReadOnlyArray<string>,
     includes?: $ReadOnlyArray<string>,
     depth?: number,
-  ): any {
+  ): any => {
     // $FlowFixMe[prop-missing]
     return this.ts.matchFiles(
       root,
@@ -104,5 +104,5 @@ export class FSHost {
       filePath => this.realpath(filePath),
       dirPath => this.directoryExists(dirPath),
     );
-  }
+  };
 }

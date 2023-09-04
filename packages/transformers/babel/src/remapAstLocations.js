@@ -22,17 +22,17 @@ export function remapAstLocations(
 
         if (mapping?.original) {
           // $FlowFixMe
-          node.loc.start.line = mapping.original.line;
+          (node.loc?.start).line = mapping.original.line;
           // $FlowFixMe
-          node.loc.start.column = mapping.original.column;
+          (node.loc?.start).column = mapping.original.column;
 
           // $FlowFixMe
-          let length = node.loc.end.column - node.loc.start.column;
+          let length = node.loc?.end?.column - node.loc?.start?.column;
 
           // $FlowFixMe
-          node.loc.end.line = mapping.original.line;
+          (node.loc?.end).line = mapping.original.line;
           // $FlowFixMe
-          node.loc.end.column = mapping.original.column + length;
+          (node.loc?.end).column = mapping.original.column + length;
 
           // $FlowFixMe
           node.loc.filename = mapping.source;
